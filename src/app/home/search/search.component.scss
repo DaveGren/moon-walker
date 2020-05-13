@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.input-search {
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+  text-align: center;
+
+  &:focus {
+    outline: none;
+  }
+}

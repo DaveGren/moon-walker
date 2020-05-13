@@ -1,0 +1,9 @@
+<mw-search
+  (onInputChange$)="applayParams($event)"
+></mw-search>
+
+<mw-card
+  *ngFor="let asteroid of astreoids$ | async"
+  [title]="asteroid.data[0].title"
+  [imageUrl]="asteroid.links[0].href"
+></mw-card>
