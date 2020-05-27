@@ -27,7 +27,6 @@ export class HomeService {
       }
     })
       .pipe(
-        tap(console.log),
         map(({ collection }: any) => { return { items: collection.items, metadata: collection.metadata}}),
         map(({ items, metadata }: any ): Pagination<Card> => {
           return {
@@ -38,9 +37,8 @@ export class HomeService {
             )),
             metadata: metadata
           }
-        }),
-        tap(console.log)
-        );
+        })
+      );
   }
 
 }
