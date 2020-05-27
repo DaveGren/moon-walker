@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,6 +11,9 @@ import { Subscription } from 'rxjs';
 export class SearchComponent implements OnInit, OnDestroy {
 
   public search$: FormControl = new FormControl('');
+
+  @Output()
+  public onInputHint$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @Output()
   public onInputChange$: EventEmitter<string> = new EventEmitter<string>();
@@ -30,6 +33,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   private watchOnSearchChange(): Subscription {
     return this.search$.valueChanges
       .pipe(
+        tap(() => this.onInputHint$.emit(true)),
         debounceTime(400),
         distinctUntilChanged(),
       )

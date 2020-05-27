@@ -1,0 +1,68 @@
+@import 'variable';
+
+.container {
+  background: transparent url(../../assets/images/background.jpg) fixed no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  transition: 1s ease-out;
+
+  &-after-search {
+    background: $radialBackground;
+  }
+}
+
+h1, p {
+  color: #fff;
+  text-align: center;
+  transition: .2s ease-out;
+  margin: 5px 0;
+  width: 50%;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  place-items: center;
+  height: 100%;
+  transition: .5s ease-in-out;
+
+  &-after-search {
+    height: 40px;
+    background-color: #fff;
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.search {
+  color: #fff !important;
+  transition: .4s ease-in-out;
+
+  &-after-search {
+    width: 100%;
+    color: #000;
+    transform: translateY(10px);
+  }
+}
+
+.container-cards {
+  display: grid;
+  grid-gap: 50px;
+  grid-template: 50vh / repeat(4, 1fr);
+  grid-auto-rows: 50vh;
+  justify-items: center;
+  padding: 15px;
+  object-fit: cover;
+  max-height: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+  .container-cards {
+    grid-template:  50vh / repeat(3, 1fr);
+  }
+}

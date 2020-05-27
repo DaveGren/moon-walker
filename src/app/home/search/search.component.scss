@@ -1,15 +1,33 @@
 :host {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
+
 
 .input-search {
   border: 0;
+  color: #fff;
+  background-color: transparent;
   border-bottom: 1px solid #ccc;
   padding-bottom: 5px;
   text-align: center;
 
-  &:focus {
+  &--white {
+    color: #000;
+  }
+
+  &:focus-within {
     outline: none;
+
+    &::after {
+        background-color: red;
+        content: '';
+        height: 40px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100px;
+    }
   }
 }

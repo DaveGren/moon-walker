@@ -1,9 +1,30 @@
-<mw-search
-  (onInputChange$)="applayParams($event)"
-></mw-search>
+<div
+  [ngClass]="{ 'container-after-search': hasSearchBegun }"
+  class="container"
+>
+  <div
+    [ngClass]="{ 'navigation-after-search': hasSearchBegun }"
+    class="navigation"
+  >
+    <h1 [ngClass]="{ 'hidden': hasSearchBegun }">Moon walker</h1>
+    <mw-search
+      [ngClass]="{ 'search-after-search': hasSearchBegun }"
+      class="search"
+      (onInputChange$)="applyParams($event)"
+      (onInputHint$)="changeStyle()"
+    ></mw-search>
+    <p  [ngClass]="{ 'hidden': hasSearchBegun }">
+      This app access the NASA image library to search trough an enormous database. Search for planets, asteroids, moons... Just have fun!
+    </p>
+  </div>
 
-<mw-card
-  *ngFor="let asteroid of astreoids$ | async"
-  [title]="asteroid.data[0].title"
-  [imageUrl]="asteroid.links[0].href"
-></mw-card>
+  <div
+    *ngIf="(searchList$ | async) as searchList"
+    class="container-cards">
+    <mw-card
+      *ngFor="let asteroid of searchList"
+      [title]="asteroid.title"
+      [imageUrl]="asteroid.imageUrl"
+    ></mw-card>
+  </div>
+</div>

@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpClientModule } from '@angular/common/http';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { AppComponent } from './app.component';
 import { AppRouting } from './app.module.routing';
@@ -25,9 +26,10 @@ import { SearchComponent } from './home/search/search.component';
   imports: [
     BrowserModule,
     HttpClientModule,
+    LazyLoadImageModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(AppRouting),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    ReactiveFormsModule
   ],
   providers: [ HomeService ],
   bootstrap: [ AppComponent ]

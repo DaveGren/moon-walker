@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 import { Pagination } from '../shared/pagination.model';
+import { Card } from '../shared/card.model';
 
 @Injectable()
 export class HomeService {
@@ -18,10 +19,28 @@ export class HomeService {
       return of([]);
     }
 
-    return this.http.get(`${environment.api}/search?q=${queryParam}&media_type=image`)
+    return this.http.get(`${environment.api}/search`,
+    {
+      params: {
+        'q': queryParam,
+        'media_type': 'image'
+      }
+    })
       .pipe(
-        map((response: any): Pagination<any> => response.collection.items)
-      )
+        tap(console.log),
+        map(({ collection }: any) => { return { items: collection.items, metadata: collection.metadata}}),
+        map(({ items, metadata }: any ): Pagination<Card> => {
+          return {
+            items: items.map((element) => new Card(
+              element.data[0].title,
+              element.links[0].href,
+              element.data[0].description,
+            )),
+            metadata: metadata
+          }
+        }),
+        tap(console.log)
+        );
   }
 
 }

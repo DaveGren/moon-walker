@@ -1,4 +1,6 @@
 <input
+  [ngClass]="{'input-search--white': !!search$.value }"
   class="input-search"
   [formControl]="search$"
+  placeholder="ex. Moon"
 >

@@ -1,25 +1,26 @@
-import { Component, Input, OnChanges } from '@angular/core';
-import { DomSanitizer, SafeHtml, SafeValue } from '@angular/platform-browser';
+import { Component, Input, Renderer2, ViewChild, ElementRef, AfterContentChecked } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'mw-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css'],
+  styleUrls: ['./card.component.scss'],
 
 })
-export class CardsComponent implements OnChanges {
+export class CardsComponent {
 
-  public image: SafeValue;
+  @ViewChild('image', { static: true })
+  public image: ElementRef;
 
   @Input() public title: string;
   @Input() public imageUrl: string;
+  @Input() public description: string;
 
   constructor(
-    private domSantizer: DomSanitizer
+    private renderer: Renderer2
   ) { }
 
-  ngOnChanges(): void {
-    this.image = this.domSantizer.bypassSecurityTrustResourceUrl(this.imageUrl);
+  replaceImage(): void {
+    this.renderer.setAttribute(this.image.nativeElement, 'src', this.imageUrl)
   }
-
 }
