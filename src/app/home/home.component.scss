@@ -1,12 +1,12 @@
 @import 'variable';
 
 .container {
-  background: transparent url(../../assets/images/background.jpg) fixed no-repeat;
   background-size: cover;
-  width: 100%;
+  background: transparent url(../../assets/images/background.jpg) fixed no-repeat;
   height: 100%;
   overflow-y: auto;
   transition: 1s ease-out;
+  width: 100%;
 
   &-after-search {
     background: $radialBackground;
@@ -15,23 +15,26 @@
 
 h1, p {
   color: #fff;
+  margin: 5px 0;
   text-align: center;
   transition: .2s ease-out;
-  margin: 5px 0;
   width: 50%;
 }
 
 .navigation {
   display: flex;
   flex-direction: column;
+  height: 100%;
   place-content: center;
   place-items: center;
-  height: 100%;
   transition: .5s ease-in-out;
+  width: 100%;
 
   &-after-search {
-    height: 40px;
     background-color: #fff;
+    height: 40px;
+    position: fixed;
+    z-index: 2;
   }
 }
 
@@ -44,26 +47,22 @@ h1, p {
   transition: .4s ease-in-out;
 
   &-after-search {
-    width: 100%;
     color: #000;
-    transform: translateY(10px);
+    position: fixed;
+    transform: translateY(4px);
+    width: 100%;
+    z-index: 3;
   }
 }
 
 .container-cards {
   display: grid;
-  grid-gap: 50px;
-  grid-template: 270px / repeat(5, 170px);
   grid-auto-rows: 270px;
-  grid-auto-columns: 170px;
+  grid-gap: 50px;
+  grid-template: 270px / repeat(auto-fill, 170px);
   justify-items: center;
-  padding: 15px;
-  object-fit: cover;
+  margin-top: 40px;
   max-height: 100%;
-}
-
-@media only screen and (max-width: 800px) {
-  .container-cards {
-    grid-template:  50vh / repeat(3, 1fr);
-  }
+  object-fit: cover;
+  padding: 25px;
 }

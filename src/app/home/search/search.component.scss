@@ -21,13 +21,13 @@
     outline: none;
 
     &::after {
-        background-color: red;
-        content: '';
-        height: 40px;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100px;
+      background-color: red;
+      content: '';
+      height: 40px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100px;
     }
   }
 }
